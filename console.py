@@ -118,7 +118,7 @@ class HBNBCommand(cmd.Cmd):
         """Creates a new instance of BaseModel, saves it
         Exceptions:
             SyntaxError: when there is no args given
-            NameError: when there is no object taht has the name
+            NameError: when there is no object that has the name
         """
         try:
             if not line:
@@ -133,7 +133,7 @@ class HBNBCommand(cmd.Cmd):
                 try:
                     var = eval(attributes[1])
                     attributes[1] = var
-                except NameError:
+                except:
                     pass
                 if type(attributes[1]) is not tuple:
                     setattr(obj, attributes[0], attributes[1])
@@ -336,24 +336,6 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
-
-    @staticmethod
-    def is_int(n):
-        """ checks if integer"""
-        try:
-            int(n)
-            return True
-        except ValueError:
-            return False
-
-    @staticmethod
-    def is_float(n):
-        try:
-            float(n)
-            return True
-        except ValueError:
-            return False
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
