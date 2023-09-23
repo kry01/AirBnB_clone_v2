@@ -20,6 +20,10 @@ all_classes = {'State': State, 'City': City,
 
 class DBStorage:
     """This class manages MySQL storage using SQLAlchemy
+
+    Attributes:
+        __engine: engine object
+        __session: session object
     """
     __engine = None
     __session = None
@@ -40,6 +44,7 @@ class DBStorage:
 
     def all(self, cls=None):
         """Query and return all objects by class/generally
+        Return: dictionary (<class-name>.<object-id>: <obj>)
         """
         obj_dict = {}
 
@@ -84,6 +89,8 @@ class DBStorage:
         # create db tables
         session = sessionmaker(bind=self.__engine,
                                expire_on_commit=False)
+        # previousy:
+        # Session = scoped_session(session)
         self.__session = scoped_session(session)
 
     def close(self):
